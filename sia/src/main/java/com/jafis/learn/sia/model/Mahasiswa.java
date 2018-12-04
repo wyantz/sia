@@ -38,9 +38,9 @@ public class Mahasiswa {
 	@Column(name="MHSADDR", length=255, nullable=false)
 	private String alamat;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name="MHSTGLLAHIR")
 	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date tanggalLahir;
 
 	public Long getId() {
