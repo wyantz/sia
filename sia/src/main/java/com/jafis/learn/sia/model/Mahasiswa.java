@@ -8,7 +8,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name="T_MAHASISWA", uniqueConstraints=@UniqueConstraint(columnNames= {"MHSNIM"}, name="UK_MHS_NIM"))
 public class Mahasiswa {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="MHSID", nullable=false)
 	private Long id;
 	
