@@ -42,6 +42,17 @@ public class MahasiswaController {
 		}
 	}
 	
+	@RequestMapping(value="search/{name}", method=RequestMethod.GET)
+	public ResponseEntity<List<Mahasiswa>> search(@PathVariable String name) {
+		try {
+			List<Mahasiswa> mhsList = this.mahasiswaDao.findByNameContaining(name);
+			return new ResponseEntity<>(mhsList, HttpStatus.OK);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);			
+		}
+	}
+
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Mahasiswa> delete(@PathVariable Long id) {
 		try {
