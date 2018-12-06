@@ -12,6 +12,8 @@
 <body>
 	<center>
 	<form id="form-mahasiswa">
+		<input type="hidden" id="id" name="id">
+		<input type="hidden" id="mode" name="mode">
 		<table>
 			<tr>
 				<td>NIM</td>
@@ -39,15 +41,23 @@
 	</center>
 <script>
 function simpanData() {
+	var tipePost;
+	if ($('#mode').val()!='edit') {
+		$('#id').val('');
+		tipePost='post';
+	} else {
+		tipePost='put';
+	}
 	var data = getFormData($('#form-mahasiswa'));
 	$.ajax({
 		url: '/sia/mahasiswa/',
-		type: 'post',
+		type: tipePost,
 		dataType: 'json',
 		contentType: 'application/json',
 		data: JSON.stringify(data),
 		success: function(d) {
 			loadData();
+			$('#mode').val('tambah');
 		},
 		error: function(d) {
 			alert('Error');
@@ -94,14 +104,52 @@ function loadData() {
 				$(td).text(element.alamat);
 				$(tr).append(td);
 
+				td = $("<td/>");
+				$(td).html("<a href='#' onclick='edit("+element.id+")' class='btn btn-primary'>Edit</a>");
+				$(tr).append(td);
+
+				td = $("<td/>");
+				$(td).html("<a href='#' onclick='hapus("+element.id+")' class='btn btn-warning'>Hapus</a>");
+				$(tr).append(td);
+
 				$(table).append(tr);
 			});
 			
-			$('#data-list').append(table);
+			$('#mahasiswa-list').append(table);
 		},
 		error: function(d) {
 		}
 	});
+}
+
+function edit(id) {
+	$.ajax({
+		type: "get",
+		url: '/sia/mahasiswa/'+id,
+		success: function(awi) {
+			$('#id').val(awi.id);
+			$('#nim').val(awi.nim);
+			$('#nama').val(awi.nama);
+			$('#alamat').val(awi.alamat);
+			$('#tanggalLahir').val(awi.tanggalLahir);
+			$('#mode').val('edit');
+		},
+		error: function(d) {
+			alert("Error");
+		}
+	});
+}
+
+function hapus(id) {
+	if (confirm('Anda yakin?')) {
+		$.ajax({
+			type: 'delete',
+			url: '/sia/mahasiswa/'+id,
+			success: function(d) {
+				loadData();
+			}
+		});
+	}
 }
 
 $(document).ready(function() {
