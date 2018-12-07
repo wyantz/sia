@@ -4,10 +4,6 @@
 <html>
 <head>
 <title>Mahasiswa</title>
-<link rel="stylesheet" href="${contextName}/assets/bootstrap/css/bootstrap.min.css">
-<script src="${contextName}/assets/jquery/jquery-3.3.1.min.js"></script>
-<script src="${contextName}/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="${contextName}/assets/js/default.js"></script>
 </head>
 <body>
 	<center>
