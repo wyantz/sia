@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FormController {
 	
-	@RequestMapping("/form/mahasiswa.html")
+	@RequestMapping("form/mahasiswa.html")
 	public String form() {
 		return "mahasiswa";
 	}
@@ -26,5 +26,10 @@ public class FormController {
 	@RequestMapping("/home.html")
 	public String home() {
 		return "home";
+	}
+
+	@RequestMapping(value= {"/403.html","/403"})
+	public String error403() {
+		return "403";
 	}
 }

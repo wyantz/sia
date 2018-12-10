@@ -24,7 +24,7 @@ import com.jafis.learn.sia.model.Mahasiswa;
  *
  */
 @RestController
-@RequestMapping("/mahasiswa")
+@RequestMapping(value= {"/mahasiswa","/api/mahasiswa"})
 public class MahasiswaController {
 	@Autowired
 	private MahasiswaDao mahasiswaDao;
