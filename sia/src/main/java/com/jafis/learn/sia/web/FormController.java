@@ -11,11 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/form")
 public class FormController {
 	
-	@RequestMapping("mahasiswa.html")
+	@RequestMapping("/form/mahasiswa.html")
 	public String form() {
 		return "mahasiswa";
+	}
+	
+	@RequestMapping("/login.html")
+	public String loginForm() {
+		return "login";
+	}
+
+	@RequestMapping("/home.html")
+	public String home() {
+		return "home";
 	}
 }

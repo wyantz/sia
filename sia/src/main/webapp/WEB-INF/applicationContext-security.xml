@@ -14,13 +14,12 @@
 	<http auto-config="false" use-expressions="true">
 		<intercept-url pattern="/" access="permitAll()" />
 		<intercept-url pattern="/index.jsp" access="permitAll()" />
-		<intercept-url pattern="/datatables/**" access="permitAll()" />
 		<intercept-url pattern="/assets/**" access="permitAll()" />
 		<intercept-url pattern="/login.html" access="permitAll()" />
 		<intercept-url pattern="/**" access="isAuthenticated()"/>
 
 		<!-- access denied page -->
-		<access-denied-handler error-page="/403" />
+		<access-denied-handler error-page="/403.html" />
 
 		<form-login login-page="/login.html"
 		    default-target-url="/home.html"
@@ -31,12 +30,6 @@
 		
 		<logout logout-url="/j_spring_security_logout" logout-success-url="/index.html" />
 		
-		<!-- 
-		<remember-me
-			remember-me-parameter="_spring_security_remember_me" 
-			remember-me-cookie="SPRING_SECURITY_REMEMBER_ME_COOKIE" />
-		-->
-		
 		<!-- enable csrf protection -->
 		<csrf disabled="true"/>
 	</http>
@@ -44,8 +37,8 @@
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="SELECT USERNAME,PASSWORD,1 AS ENABLED FROM MST_EMPLOYEES WHERE USERNAME=?"
-				authorities-by-username-query="SELECT DISTINCT E.USERNAME, R.ROLE_NAME FROM  MST_EMPLOYEES E, MST_EMPLOYEEOUTLET EO, MST_ROLE R WHERE E.ID=EO.EMPLOYEE_ID AND EO.ROLE_ID=R.ID AND E.USERNAME=?" />
+				users-by-username-query="SELECT USERID,PASSWORD,1 AS ENABLED FROM T_USER WHERE USERID=?"
+				authorities-by-username-query="SELECT DISTINCT U.USERID, R.ROLE FROM  T_USER U, T_ROLE R WHERE U.USERID=R.USERID AND U.USERID=?" />
 		</authentication-provider>
 	</authentication-manager>
 </b:beans>

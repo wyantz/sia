@@ -4,6 +4,11 @@
 <html>
 <head>
 <title>Mahasiswa</title>
+<script>
+function test() {
+	
+}
+</script>
 </head>
 <body>
 	<center>
