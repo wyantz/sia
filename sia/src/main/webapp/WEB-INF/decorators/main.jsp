@@ -20,8 +20,10 @@
 	<div class="container">
 		<div class="col-lg-6">Header</div>
 		<div class="col-lg-6">
-			<sec:authentication property="principal.username"/>&nbsp;|&nbsp;
-			<sec:authorize access="isAuthenticated()"><a href="${contextName}/j_spring_security_logout">Logout</a></sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<sec:authentication property="principal.username"/>&nbsp;|&nbsp;
+				<a href="${contextName}/j_spring_security_logout">Logout</a>
+			</sec:authorize>
 		</div>
 	</div>
 	<decorator:body/>
